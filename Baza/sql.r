@@ -1,5 +1,5 @@
-library(dplyr)
 library(RPostgreSQL)
+library(dplyr)
 
 #Uvoz:
 source("auth.R")
@@ -18,6 +18,7 @@ delete_table <- function(){
     #ki se navezujejo na druge
     dbSendQuery(conn,build_sql("DROP TABLE IF EXISTS pesmi"))
     dbSendQuery(conn,build_sql("DROP TABLE IF EXISTS glasbeniki"))
+    dbSendQuery(conn,build_sql("DROP TABLE IF EXISTS ranks"))
     
     
   }, finally = {
@@ -35,24 +36,31 @@ create_table <- function(){
     # Vzpostavimo povezavo
     conn <- dbConnect(drv, dbname = db, host = host,
                       user = user, password = password)
-    
-    #Glavne tabele
-#     pesmi <- dbSendQuery(conn,build_sql("CREATE TABLE pesmi (
-#                                         id TEXT PRIMARY KEY,
-#                                         naslov_pesmi TEXT,
-#                                         album TEXT,                                        zvrst TEXT,
-#                                         letnica TEXT,
-#                                         medij TEXT,
-#                                         dolzina TEXT,      
-#                                         datum_vstopa TEXT                                
-#                                         )"))
+
+    #Glavne tabele:
     glasbeniki <- dbSendQuery(conn,build_sql("CREATE TABLE glasbeniki (
+                                        id INTEGER PRIMARY KEY,
                                         Artist TEXT,
                                         Featured TEXT,
                                         UnFeatured TEXT,
                                         WrittenBy TEXT
                                         )"))
-    
+
+#     ranks <- dbSendQuery(conn,build_sql("CREATE TABLE ranks (
+#                                         id INTEGER PRIMARY KEY,
+#                                         week INTEGER,
+#                                         rank INTEGER
+#                                         )"))
+#     pesmi <- dbSendQuery(conn,build_sql("CREATE TABLE pesmi (
+#                                         id INTEGER PRIMARY KEY,
+#                                         Track TEXT,
+#                                         Album TEXT,                                        zvrst TEXT,
+#                                         Year INTEGER,
+#                                         Media TEXT,
+#                                         Time TEXT,      
+#                                         DateEntered TEXT                                
+#                                         )"))
+#     
     
   }, finally = {
     # Na koncu nujno prekinemo povezavo z bazo,
@@ -65,6 +73,9 @@ create_table <- function(){
 
 #Uvoz podatkov:
 
+# glasbeniki <-read.csv("Podatki/glasbeniki.csv",fileEncoding = "Windows-1252")
+# pesmi <-read.csv("Podatki/pesmi.csv",fileEncoding = "Windows-1252")
+# ranks <-read.csv("Podatki/ranks.csv",fileEncoding = "Windows-1252")
 #billboard <- read.csv("Podatki/lestvica.csv",fileEncoding = "Windows-1252")
 
 #Funcija, ki vstavi podatke
@@ -75,6 +86,7 @@ insert_data <- function(){
     
     dbWriteTable(conn, name="pesmi", pesmi, append=T, row.names=FALSE)
     dbWriteTable(conn, name="glasbeniki",glasbeniki,append=T, row.names=FALSE)
+    dbWriteTable(conn, name="ranks",ranks,append=T, row.names=FALSE)
     
   }, finally = {
     dbDisconnect(conn) 
