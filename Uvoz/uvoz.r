@@ -3,6 +3,7 @@ library(dplyr)
 
 billboard <- read.csv("Podatki/lestvica.csv",header=TRUE,sep=";", fileEncoding = "Windows-1252")
 billboard <- billboard[,1:125] # sicer je veliko praznih stolpcev
+billboard$Date.Entered<-as.Date(billboard$Date.Entered, "%d/%m/%Y") #spremenil sem v datume
 
 #Stolpci v razpredelnici ki so shranjeni kot Factor, jih spremenimo v character:
 indx <- sapply(billboard, is.factor)
@@ -26,6 +27,8 @@ ranks$rank <- sapply(ranks$rank, function(x) ifelse("B" == strsplit(x,"")[[1]][1
 ranks$rank <- as.numeric(ranks$rank)
 
 ranks$rank[ranks$rank %in% c(""," ","?")] <- NA
+
+as.Date(billboard$Date.Entered, "%d/%m/%Y")
 
 # write.table(pesmi,file="Podatki/pesmi.csv",sep=";")
 # write.table(glasbeniki,file="Podatki/glasbeniki.csv",sep=";")
