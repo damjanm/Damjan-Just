@@ -1,14 +1,16 @@
+
+
 shinyUI(fluidPage(
   
   # Application title
-  titlePanel("Hello Shiny!"),
+  titlePanel("Iskalec pesmi"),
   
   sidebarLayout(
     
     # Sidebar with a slider input
     sidebarPanel(
       dateInput("date",
-                  "Number of observations:",
+                  "Izberi datum:",
                   min = NULL,
                   max = NULL,
                   value = NULL)
