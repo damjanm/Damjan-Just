@@ -3,7 +3,7 @@ library(dplyr)
 
 #Uvoz:
 source("auth.R")
-source("Uvoz/uvoz.r")
+#source("Uvoz/uvoz.r")
 
 # Povezemo se z gonilnikom za PostgreSQL
 drv <- dbDriver("PostgreSQL") 
