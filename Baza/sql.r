@@ -2,7 +2,7 @@ library(RPostgreSQL)
 library(dplyr)
 
 #Uvoz:
-source("auth.R")
+source("auth.r")
 #source("Uvoz/uvoz.r")
 
 # Povezemo se z gonilnikom za PostgreSQL
@@ -46,22 +46,23 @@ create_table <- function(){
                                         WrittenBy TEXT
                                         )"))
 
-#     ranks <- dbSendQuery(conn,build_sql("CREATE TABLE ranks (
-#                                         id INTEGER PRIMARY KEY,
-#                                         week INTEGER,
-#                                         rank INTEGER
-#                                         )"))
-#     pesmi <- dbSendQuery(conn,build_sql("CREATE TABLE pesmi (
-#                                         id INTEGER PRIMARY KEY,
-#                                         Track TEXT,
-#                                         Album TEXT,                                        zvrst TEXT,
-#                                         Year INTEGER,
-#                                         Media TEXT,
-#                                         Time TEXT,      
-#                                         DateEntered TEXT                                
-#                                         )"))
-#     
+    ranks <- dbSendQuery(conn,build_sql("CREATE TABLE ranks (
+                                        id INTEGER,
+                                        week INTEGER,
+                                        rank INTEGER
+                                        )"))
+    pesmi <- dbSendQuery(conn,build_sql("CREATE TABLE pesmi (
+                                        id INTEGER PRIMARY KEY,
+                                        Track TEXT,
+                                        Album TEXT,                                        
+                                        Year INTEGER,
+                                        Media TEXT,
+                                        Time TEXT,      
+                                        DateEntered TEXT                                
+                                        )"))
     
+  dbSendQuery(conn, build_sql('GRANT SELECT ON ALL TABLES IN SCHEMA public TO javnost'))
+
   }, finally = {
     # Na koncu nujno prekinemo povezavo z bazo,
     # saj prevec odprtih povezav ne smemo imeti

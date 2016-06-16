@@ -15,7 +15,8 @@ shinyServer(function(input, output) {
   conn <- src_postgres(dbname = db, host = host,
                        user = user, password = password)
   y <- data.frame(tbl(conn, "pesmi"))
-  output$hist <- renderTable({filter(y,Date.Entered==as.Date(input$date))
+  y$dateentered<-as.Date(y$dateentered,"%d/%m/%Y")
+  output$hist <- renderTable({filter(y,dateentered==as.Date(input$date,"%d/%m/%Y"))
     
   })
   
