@@ -33,3 +33,16 @@ as.Date(billboard$Date.Entered, "%d/%m/%Y")
 # write.table(pesmi,file="Podatki/pesmi.csv",sep=";")
 # write.table(glasbeniki,file="Podatki/glasbeniki.csv",sep=";")
 # write.table(ranks,file="Podatki/ranks.csv",sep=";")
+
+############urejanje glasbeniki###########################
+sezglas<-billboard$Artist[duplicated(billboard$Artist)==FALSE]
+m<-data.frame(sezglas)
+
+urej<-function(x){
+  c<-billboard$Artist==x
+return(pesmi$id[c])}
+
+#seznam idjev
+c<-lapply(m$sezglas,function(x) urej(x))
+m$id<-c
+
