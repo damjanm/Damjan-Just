@@ -5,6 +5,7 @@ billboard <- read.csv("Podatki/lestvica.csv",header=TRUE,sep=";", fileEncoding =
 billboard <- billboard[,1:125] # sicer je veliko praznih stolpcev
 billboard$Date.Entered<-as.Date(billboard$Date.Entered, "%d/%m/%Y") #spremenil sem v datume
 
+
 #Stolpci v razpredelnici ki so shranjeni kot Factor, jih spremenimo v character:
 indx <- sapply(billboard, is.factor)
 billboard[indx] <- lapply(billboard[indx], function(x) ifelse(!is.na(x),as.character(x),x))
@@ -42,7 +43,12 @@ urej<-function(x){
   c<-billboard$Artist==x
 return(pesmi$id[c])}
 
-#seznam idjev
+#seznam idjev, ne vem kako to popraviti
+
 c<-lapply(m$sezglas,function(x) urej(x))
 m$id<-c
 
+billboard$CH<-as.numeric(billboard$CH)
+leto<-c(1890:2016)
+povprecja<-data.farame(leto)
+povprecja$pov<-lapply(povprecja$leto, function(x) mean(billboard$CH[billboard$Year==x]))

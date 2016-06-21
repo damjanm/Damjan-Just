@@ -1,46 +1,30 @@
-
-
 shinyUI(fluidPage(
   
-  # Application title
-  titlePanel("Iskalec pesmi"),
+  titlePanel("Glasba in mediji skozi zgodovino"),
+  
   tabsetPanel(
-    tabPanel(
-      sidebarLayout(
     
-    # Sidebar with a slider input
-    sidebarPanel(
-      dateInput("date",
-                  "Izberi datum:",
-                  min = NULL,
-                  max = NULL,
-                  format = "d/m/yyyy",
-                  value = NULL)
-  
-      #dateInput("b",
-                #"Izberi datum:",
-                #min = NULL,
-                #max = NULL,
-                #value = NULL)
+    
+#####################################    
+    tabPanel("Histogram medijev",  
+      sliderInput(inputId="leto",
+                  label="Izberi letnico",
+                  value=1, min =1955, max=2016),
       
-      ),
-    
-    
-    # Show a plot of the generated distribution
-    mainPanel(
-      tableOutput("hist")
-    )  
+      plotOutput("hist")
+    ),
+########################################################
+  tabPanel("Koliko tednov je pesem ostala na lestici",
+           sliderInput(inputId="leto1", label= "Izberi si spodnjo letnico",
+                       value=1, min=1955, max=2016),
+           sliderInput(inputId="leto2",
+                       label="Izberi si zgornjo letnico",
+                       value=1, min =1955, max=2016),
+           plotOutput("bla")
   )
-)
-
-
-  
-  
-)
-
-
+########################################################
+  )    
 ))
-
 
 
 
