@@ -16,10 +16,10 @@ shinyUI(fluidPage(
 ########################################################
   tabPanel("Koliko tednov je pesem ostala na lestici",
            sliderInput(inputId="leto1", label= "Izberi si spodnjo letnico",
-                       value=1, min=1955, max=2016),
+                       value=1, min=1890, max=2016),
            sliderInput(inputId="leto2",
                        label="Izberi si zgornjo letnico",
-                       value=1, min =1955, max=2016),
+                       value=1, min =1890, max=2016),
            plotOutput("bla")
   )
 ########################################################
