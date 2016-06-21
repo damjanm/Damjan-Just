@@ -11,7 +11,7 @@ source("auth.R",encoding='UTF-8')
 
 
 function(input,output){
-  output$hist<-renderPlot({barplot(table(billboard$Media[billboard$Year==input$leto]),main="Medij na katerem je bila pesem izdana", 
+  output$hist<-renderPlot({barplot(table(pesmi$Media[pesmi$Year==input$leto]),main="Medij na katerem je bila pesem izdana", 
                                    xlab="Medij",col=c("blue","red"))
                            })
   #################################################################################################################
