@@ -10,7 +10,8 @@ if ("server.R" %in% dir()) {
 source("auth.R",encoding='UTF-8')
 
 
-function(input,output){
+shinyServer(function(input,output){
+  
   output$hist<-renderPlot({barplot(table(pesmi$Media[pesmi$Year==input$leto]),main="Medij na katerem je bila pesem izdana", 
                                    xlab="Medij",col=c("blue","red"))
                            })
@@ -24,4 +25,10 @@ function(input,output){
                           povprecja$pov<-unlist(povprecja$pov)
                           qplot(x=povprecja$leto, y=povprecja$pov,geom="smooth", method="lm", formula=y~x,ylab="koliko tedno v povprecju je pesem ostala na lestvici", xlab="leto")
                           })
-}
+  ##################################################################################################################
+  output$heh<-renderPlot({ c<-data.frame(table(billboard$Year[billboard$Genre==input$zvrst]))
+                           plot(x=c$Var1, y=c$Freq,xlab="leto",ylab="število pesmi")})
+  ##################################################################################################################
+  output$mah<-renderPlot({d<-data.frame(table(billboard$Year[billboard$CH==input$stt]))
+                          plot(x=d$Var1,y=d$Freq,xlab="leto", ylab="število pesmi")})
+})

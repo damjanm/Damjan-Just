@@ -21,10 +21,23 @@ shinyUI(fluidPage(
                        label="Izberi si zgornjo letnico",
                        value=1, min =1890, max=2016),
            plotOutput("bla")
-  )
+  ),
 ########################################################
-  )    
-))
+  tabPanel("Popularne zvrsti skozi zgodovino",
+             selectInput(inputId="zvrst", label="zvrst", choices=billboard$Genre[duplicated(billboard$Genre)==FALSE]),
+             plotOutput("heh")),
+##########################################################################################
+  tabPanel("Koliko pesmi je na lestvici ostalo določeno obdobje",
+           selectInput(inputId="stt", label="Izberi število tednov, ki te zanima", choices=c(1:50)),
+           plotOutput("mah"))
+           )
+
+            
+
+
+
+)    
+)
 
 
 
