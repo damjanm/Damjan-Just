@@ -14,12 +14,13 @@ colnames(billboard)[4] <- "id"
 billboard[,4] <- 1:nrow(billboard)
 
 
-pesmi <- billboard[,c("id","Track","Album", "Year","Media","Time","Date.Entered")]
+pesmi <- billboard[,c("id","Track","Album", "Year","Media","Time","Date.Entered","Genre","CH")]
 pesmi$Media <- sapply(pesmi$Media, function(x) ifelse(x %in% c("45s", "10\"", "12", "45","EP-12","45m","44","45m*", "45m/s","78","45/78","78/45m","LP/EP"), "LP/EP", x))
 pesmi$Media <- sapply(pesmi$Media, function(x) ifelse(x %in% c("SC","CS/45","CS/45s","CSM","45/CS","C S","45s/CS"),"CS",x))
 pesmi$Media <- sapply(pesmi$Media, function(x) ifelse(x %in% c("DVD","PCD","12/CD","CDM","CD/12","CD/CS","CS/CD","CD/45s"),"CD",x))
 pesmi$Media <- sapply(pesmi$Media, function(x) ifelse(x %in% c("DD","CD","CS","LP/EP"),x,NA))
-
+pesmi$Genre <- sapply(pesmi$Genre, function(x) ifelse(x == "",NA,x))
+                                                      
 glasbeniki <- billboard[,c("id","Artist","Featured","UnFeatured","Written.By")] 
 
 #Tabelo, kjer hranimo uvrstitev:

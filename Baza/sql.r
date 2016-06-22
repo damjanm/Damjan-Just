@@ -58,7 +58,9 @@ create_table <- function(){
                                         Year INTEGER,
                                         Media TEXT,
                                         Time TEXT,      
-                                        DateEntered TEXT                                
+                                        DateEntered TEXT, 
+                                        Genre TEXT,
+                                        CH INTEGER
                                         )"))
     
   dbSendQuery(conn, build_sql('GRANT SELECT ON ALL TABLES IN SCHEMA public TO javnost'))
