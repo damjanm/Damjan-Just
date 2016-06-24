@@ -22,6 +22,9 @@ pesmi$Media <- sapply(pesmi$Media, function(x) ifelse(x %in% c("DD","CD","CS","L
 pesmi$CH<-as.numeric(pesmi$CH)
 pesmi$CH <- sapply(pesmi$CH, function(x) ifelse(x == 0,NA,x))
 pesmi$Genre <- sapply(pesmi$Genre, function(x) ifelse(x == "",NA,x))
+pesmi$Genre <- sapply(pesmi$Genre, function(x) ifelse(x %in% c("Newage","Club","Alternative","Benefit","Ensemble","Adult Contemporary","Techno-Rock","Celtic","Bluegrass","Cajun","Spoken"),NA,x))
+pesmi$Genre <- sapply(pesmi$Genre, function(x) ifelse(x %in% c("Gospel","World","Vocal","Comedy","Easy","Easy Listening","Singer-Songwriter","Soundtrack","New-Wave","Christmas","Big Band","Child","Children's","Easy Listening"),"Pop",x))
+pesmi$Genre <- sapply(pesmi$Genre, function(x) ifelse(x %in% c("Dance","Electronica","Techno","Disco"),"Disco/Electro",x))
                                                       
 glasbeniki <- billboard[,c("id","Artist","Featured","UnFeatured","Written.By")] 
 

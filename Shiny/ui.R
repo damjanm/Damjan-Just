@@ -24,13 +24,8 @@ shinyUI(fluidPage(
   ),
 ########################################################
   tabPanel("Popularne zvrsti skozi zgodovino",
-             selectInput(inputId="zvrst", label="zvrst", choices=c("","Rap","Rock","Country","Newage","Pop", "R&B","Alternative",
-                                                                   "Club","Latin","Reggae","Electronica","Techno","World",
-                                                                   "Vocal","Gospel","Folk","Jazz","Comedy","Dance","Easy",
-                                                                   "Benefit","Singer-Songwriter","Blues","Ensemble",
-                                                                   "Adult Contemporary", "Soundtrack","Disco","New-Wave",
-                                                                   "Christmas","Techno-Rock","Big Band", "Celtic","Child",
-                                                                   "Children's", "Bluegrass","Easy Listening","Cajun","Spoken") ),
+             selectInput(inputId="zvrst", label="zvrst", choices=c("","Rap","Rock","Country","Pop","R&B",
+                                                                   "Latin","Reggae","Disco/Electro","Folk","Jazz","Blues") ),
              plotOutput("heh")),
 ##########################################################################################
   tabPanel("Koliko pesmi je na lestvici ostalo določeno obdobje",
