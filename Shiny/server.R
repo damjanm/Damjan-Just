@@ -19,8 +19,10 @@ shinyServer(function(input,output){
   
   output$hist<-renderPlot({a<-filter(pes,year==input$leto)
                            pesmi<-data.frame(a)
-                           barplot(table(pesmi$media),main="Medij na katerem je bila pesem izdana", 
-                                   xlab="Medij",col=c("blue","red"))
+                           k<-data.frame(table(c(pesmi$media,"DD","LP/EP","CD",NA, "CS")))
+                           k$Freq<-k$Freq-c(1,1,1,1)
+                           barplot(k$Freq,names.arg=k$Var1, main="Medij na katerem je bila pesem izdana",
+                                   col=c("blue","red"))
                            })
   #################################################################################################################
   
@@ -44,4 +46,7 @@ shinyServer(function(input,output){
                           f<-data.frame(e)
                           d<-data.frame(table(f$year))
                           plot(x=d$Var1,y=d$Freq,xlab="leto", ylab="število pesmi")})
+
 })
+
+#"DD"    "LP/EP" "CD"    NA      "CS"
