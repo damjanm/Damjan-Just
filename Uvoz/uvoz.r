@@ -19,6 +19,8 @@ pesmi$Media <- sapply(pesmi$Media, function(x) ifelse(x %in% c("45s", "10\"", "1
 pesmi$Media <- sapply(pesmi$Media, function(x) ifelse(x %in% c("SC","CS/45","CS/45s","CSM","45/CS","C S","45s/CS"),"CS",x))
 pesmi$Media <- sapply(pesmi$Media, function(x) ifelse(x %in% c("DVD","PCD","12/CD","CDM","CD/12","CD/CS","CS/CD","CD/45s"),"CD",x))
 pesmi$Media <- sapply(pesmi$Media, function(x) ifelse(x %in% c("DD","CD","CS","LP/EP"),x,NA))
+pesmi$CH<-as.numeric(pesmi$CH)
+pesmi$CH <- sapply(pesmi$CH, function(x) ifelse(x == 0,NA,x))
 pesmi$Genre <- sapply(pesmi$Genre, function(x) ifelse(x == "",NA,x))
                                                       
 glasbeniki <- billboard[,c("id","Artist","Featured","UnFeatured","Written.By")] 
