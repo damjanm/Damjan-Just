@@ -55,5 +55,5 @@ m$id<-c
 
 billboard$CH<-as.numeric(billboard$CH)
 leto<-c(1890:2016)
-povprecja<-data.farame(leto)
+povprecja<-data.frame(leto)
 povprecja$pov<-lapply(povprecja$leto, function(x) mean(billboard$CH[billboard$Year==x]))

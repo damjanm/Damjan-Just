@@ -11,6 +11,7 @@ source("auth_public.R",encoding='UTF-8')
 
 conn <- src_postgres(dbname = db, host = host,
                      user = user, password = password)
-pesmi <- data.frame(tbl(conn, "pesmi"))
-glasbeniki <-data.frame(tbl(conn, "glasbeniki"))
-ranks <-data.frame(tbl(conn, "ranks"))
+pesmi <- (tbl(conn, "pesmi"))
+glasbeniki <-(tbl(conn, "glasbeniki"))
+ranks <-(tbl(conn, "ranks"))
+
