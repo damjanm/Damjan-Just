@@ -30,10 +30,13 @@ shinyUI(fluidPage(
 ##########################################################################################
   tabPanel("Koliko pesmi je na lestvici ostalo določeno obdobje",
            selectInput(inputId="stt", label="Izberi število tednov, ki te zanima", choices=c(1:50)),
-           plotOutput("mah"))
-           )
-
-            
+           plotOutput("mah")),
+##########################################################################################
+  
+tabPanel("Povprečna dolžina pesmi skozi čas",
+         sliderInput(inputId = "povp_dolz",label="Izberi do katerega mesta na lestvici naj prikaze",value = 10, min = 1, max = 100),
+         plotOutput("dolz"))
+  )  
 
 
 

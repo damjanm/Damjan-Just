@@ -2,6 +2,7 @@ library(shiny)
 library(dplyr)
 library(RPostgreSQL)
 library(ggplot2)
+library(chron)
 
 
 if ("server.R" %in% dir()) {
@@ -16,7 +17,6 @@ shinyServer(function(input,output){
   pes <- (tbl(conn, "pesmi"))
   glas <-(tbl(conn, "glasbeniki"))
   ran <-(tbl(conn, "ranks"))
-  
   output$hist<-renderPlot({a<-filter(pes,year==input$leto)
                            pesmi<-data.frame(a)
                            k<-data.frame(table(c(pesmi$media,"DD","LP/EP","CD",NA, "CS")))
@@ -47,6 +47,24 @@ shinyServer(function(input,output){
                           d<-data.frame(table(f$year))
                           plot(x=d$Var1,y=d$Freq,xlab="leto", ylab="število pesmi")})
 
+  output$dolz<-renderPlot({time1 <- filter(pes,ch <= input$povp_dolz)
+                          time <- data.frame(time1)
+                          time$time_1 <- sapply(strsplit(time$time,":"),
+                                  function(x) {
+                                    if(is.character(x)){
+                                      x <- as.numeric(x)
+                                      x[1]+x[2]/60
+                                  }})
+                          povp <- sapply(1944:2016, function(x){
+                              mean(time$time_1[time$year == x],na.rm=TRUE) })
+                          
+                          # povp_1 <- sapply(povp, function(x){
+                          #   paste(trunc(x), 60*(x - trunc(x)),sep=":")
+                          # })
+                          plot(1944:2016,povp,type="l",xlab="Leto",ylab="Povprečna dolžina pesmi")
+                          #tt <- seq(times("00:00:00"), times("00:09:59"), times("00:00:10"))
+                          #axis(2, tt, sub(":00$", "", times(tt)))
+                            })
 })
 
 #"DD"    "LP/EP" "CD"    NA      "CS"
