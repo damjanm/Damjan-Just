@@ -27,10 +27,9 @@ shinyServer(function(input,output){
   #################################################################################################################
   
   
-  output$bla<-renderPlot({
-                          b<-filter(pes,year<=input$leto2 & year>=input$leto1)
+  output$bla<-renderPlot({b<-filter(pes, year>=input$leto1[1], year<=input$leto1[2])
                           pesm<-data.frame(b)
-                          leta<-c(input$leto1:input$leto2)
+                          leta<-c(input$leto1[1]:input$leto1[2])
                           povprecja<-data.frame(leta)
                           povprecja$pov<-lapply(povprecja$leta, function(x) mean(pesm$ch[pesm$year==x]))
                           povprecja$pov<-unlist(povprecja$pov)
