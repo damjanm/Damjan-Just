@@ -8,7 +8,7 @@ library(chron)
 if ("server.R" %in% dir()) {
   setwd("..")
 }
-source("auth.R",encoding='UTF-8')
+source("auth_public.R",encoding='UTF-8')
 
 
 shinyServer(function(input,output){
@@ -60,7 +60,7 @@ shinyServer(function(input,output){
                           # povp_1 <- sapply(povp, function(x){
                           #   paste(trunc(x), 60*(x - trunc(x)),sep=":")
                           # })
-                          plot(1944:2016,povp,type="l",xlab="Leto",ylab="Povprečna dolžina pesmi")
+                          plot(1944:2016,povp,type="l",xlab="Leto",ylab="Povprečna dolžina pesmi (v minutah)")
                           #tt <- seq(times("00:00:00"), times("00:09:59"), times("00:00:10"))
                           #axis(2, tt, sub(":00$", "", times(tt)))
                             })

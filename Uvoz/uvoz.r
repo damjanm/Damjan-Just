@@ -41,10 +41,6 @@ ranks$rank[ranks$rank %in% c(""," ","?")] <- NA
 
 as.Date(billboard$Date.Entered, "%d/%m/%Y")
 
-# write.table(pesmi,file="Podatki/pesmi.csv",sep=";")
-# write.table(glasbeniki,file="Podatki/glasbeniki.csv",sep=";")
-# write.table(ranks,file="Podatki/ranks.csv",sep=";")
-
 ############urejanje glasbeniki###########################
 sezglas<-billboard$Artist[duplicated(billboard$Artist)==FALSE]
 m<-data.frame(sezglas)
@@ -62,3 +58,7 @@ billboard$CH<-as.numeric(billboard$CH)
 leto<-c(1890:2016)
 povprecja<-data.frame(leto)
 povprecja$pov<-lapply(povprecja$leto, function(x) mean(billboard$CH[billboard$Year==x]))
+
+# write.table(pesmi,file="Podatki/pesmi.csv",sep=";")
+# write.table(glasbeniki,file="Podatki/glasbeniki.csv",sep=";")
+# write.table(ranks,file="Podatki/ranks.csv",sep=";")

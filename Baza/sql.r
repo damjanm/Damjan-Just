@@ -3,7 +3,7 @@ library(dplyr)
 
 #Uvoz:
 source("auth_public.r")
-#source("Uvoz/uvoz.r")
+source("Uvoz/uvoz.r")
 
 # Povezemo se z gonilnikom za PostgreSQL
 drv <- dbDriver("PostgreSQL") 
@@ -76,9 +76,9 @@ create_table <- function(){
 
 #Uvoz podatkov:
 
-# glasbeniki <-read.csv("Podatki/glasbeniki.csv",fileEncoding = "Windows-1252")
-# pesmi <-read.csv("Podatki/pesmi.csv",fileEncoding = "Windows-1252")
-# ranks <-read.csv("Podatki/ranks.csv",fileEncoding = "Windows-1252")
+#glasbeniki <-read.csv("Podatki/glasbeniki.csv",fileEncoding = "Windows-1252")
+#pesmi <-read.csv("Podatki/pesmi.csv",fileEncoding = "Windows-1252")
+#ranks <-read.csv("Podatki/ranks.csv",fileEncoding = "Windows-1252")
 #billboard <- read.csv("Podatki/lestvica.csv",fileEncoding = "Windows-1252")
 
 #Funcija, ki vstavi podatke
