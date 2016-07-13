@@ -8,7 +8,7 @@ library(chron)
 if ("server.R" %in% dir()) {
   setwd("..")
 }
-source("auth_public.R",encoding='UTF-8')
+source("auth_public.r",encoding='UTF-8')
 
 
 shinyServer(function(input,output){
