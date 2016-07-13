@@ -27,7 +27,7 @@ shinyUI(fluidPage(
   ),
 ########################################################
   tabPanel("Popularne zvrsti skozi zgodovino",
-             selectInput(inputId="zvrst", label="zvrst", choices=c("","Rap","Rock","Country","Pop","R&B",
+             selectInput(inputId="zvrst", label="Zvrst", choices=c("","Rap","Rock","Country","Pop","R&B",
                                                                    "Latin","Reggae","Disco/Electro","Folk","Jazz","Blues") ),
              plotOutput("heh")),
 ##########################################################################################

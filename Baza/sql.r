@@ -2,7 +2,7 @@ library(RPostgreSQL)
 library(dplyr)
 
 #Uvoz:
-source("auth_public.r")
+source("auth_public.R")
 source("Uvoz/uvoz.r")
 
 # Povezemo se z gonilnikom za PostgreSQL

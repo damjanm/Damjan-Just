@@ -36,16 +36,16 @@ shinyServer(function(input,output){
                           qplot(x=povprecja$leta, y=povprecja$pov,geom="smooth", method="lm", formula=y~x,ylab="koliko tedno v povprecju je pesem ostala na lestvici", xlab="leto")
                           })
   ##################################################################################################################
-  output$heh<-renderPlot({a<-filter(pes,genre==input$zvrst)
-                          b<-data.frame(a)
-                          c<-data.frame(table((b$year)))
-                           plot(x=c$Var1, y=c$Freq,xlab="leto",ylab="število pesmi")})
+  output$heh<-renderPlot({a <-filter(pes,genre==input$zvrst) %>% group_by(year) %>%
+                          summarise(Freq = n()) %>% data.frame()
+                          validate(need(nrow(a) > 0, "Izberi zvrst!"))
+                          plot(x=a$year, y=a$Freq,xlab="leto",ylab="število pesmi")})
   ##################################################################################################################
   output$mah<-renderPlot({e<-filter(pes,ch==input$stt)
                           f<-data.frame(e)
                           d<-data.frame(table(f$year))
-                          plot(x=d$Var1,y=d$Freq,xlab="leto", ylab="število pesmi")})
-
+                          plot(x=d$Var1,y=d$Freq,type="l",xlab="leto", ylab="število pesmi")})
+  ##################################################################################################################
   output$dolz<-renderPlot({time1 <- filter(pes,ch <= input$povp_dolz)
                           time <- data.frame(time1)
                           time$time_1 <- sapply(strsplit(time$time,":"),
